@@ -1,3 +1,9 @@
+def hello():
+    print('')
+    print(f'Hello and welcome in our SAT and TV orderd system')
+    print('')  
+
+
 class Customer:
     """Class customer will collect and validate customer details which will be provided at the end of purchasing proccess"""
     
@@ -11,6 +17,7 @@ class Customer:
         self.city = city
         
 def get_customer_data():
+    name = input('Please type in your name: ').capitalize()
     surname = input('Please type in your surname: ').capitalize()
     phone = int(input('Please type in your phone number: '))
     email = input('Please type in your email: ')
@@ -21,8 +28,16 @@ def get_customer_data():
     street = input('Street name: ').capitalize()
     city = input('City: ').capitalize()
         
-    customer = Customer(surname, phone,email, house_num,street, city)
+    customer = Customer(name, surname, phone,email, house_num,street, city)
         
     return customer
+
+
+
+def main():
+    hello()
+    cust = get_customer_data()
+
+main()
         
     
