@@ -3,18 +3,20 @@ from sys import exit
 
 def hello():
     '''
-    Welcoming function which will show at begining
+    Welcoming function which will show at begining and ask for name to get access
     '''
-    print('Welcome before you enter can I ask for your name? ')
+    print('Welcome! Before you enter can I ask you for your name? ')
     time.sleep(1)
     answer = input('Press Y to continue, N to leave: ')
     if answer.lower() == 'y':
-        name = input('Whats your name: ')
+        name = input('Whats your name: ').capitalize()
         print('')
-        print(f'Hello {name} and welcome in our SAT and TV order system')
+        print(f'Hello {name} and welcome in our SAT Tv and CCTV order system')
         print('')
     else:
+        print('\nSorry you pressed N or other key which close our system. You can come back if you wish and start again.\n')
         exit()  
+
 
 
 class Customer:
@@ -30,6 +32,11 @@ class Customer:
         self.city = city
         
 def get_customer_data():
+    time.sleep(1)
+    print('\nNow please provide your details to complete order.')
+    print('')
+    print("Follow informations are needed:\n-Name \n-Surname \n-Phone number \n-E-mail \n-Address \n")
+    
     name = input('Please type in your name: ').capitalize()
     surname = input('Please type in your surname: ').capitalize()
     phone = int(input('Please type in your phone number: '))
@@ -40,19 +47,24 @@ def get_customer_data():
     house_num = int(input('House number: '))
     street = input('Street name: ').capitalize()
     city = input('City: ').capitalize()
+    
         
     customer = Customer(name, surname, phone,email, house_num,street, city)
         
     return customer
 
+def data_veryfication(customer):
+    pass
 
 
 def main():
     
-    hello()
+    # hello()
     
     
     customer = get_customer_data()
+    
+    data_veryfication(customer)
 
 main()
         
