@@ -1,3 +1,4 @@
+
 import time
 from sys import exit
 
@@ -11,12 +12,52 @@ def hello():
     if answer.lower() == 'y':
         name = input('Whats your name: ').capitalize()
         print('')
-        print(f'Hello {name} and welcome in our SAT Tv and CCTV order system')
+        print(f'Hello {name} and welcome in our SAT TV and CCTV order system')
         print('')
     else:
         print('\nSorry you pressed N or other key which close our system. You can come back if you wish and start again.\n')
         exit()  
+        
+def show_stock():
+    stock ={
+            'cctv_sets' : 100,
+            'cameras' : 1000,
+            'sat_sets' : 300, 
+        } 
+    price = {
+            'cctv_set_price' : 100,
+            'camera_price' : 40,
+            'sat_price' : 120
+        }
 
+    
+    time.sleep(1)
+    print('\nTo make it easy we are selling our products in sets which are including all cabling and connections.')
+    time.sleep(1)
+    print('\nYou can order maximum of 10 SAT TV sets and 1 set of CCTV with up to 16 cameras with single order\nOur current prices and avabilty will be shown below\n')
+    time.sleep(3)
+    for x,y in stock.items():
+        print(f'{x} = {y} units')
+        
+    print('\nCurrent prices\n')    
+        
+    for z,c in price.items():
+        print(f'{z} = ${c}')
+        
+    
+        
+        
+            
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 class Customer:
@@ -31,40 +72,40 @@ class Customer:
         self.street = street
         self.city = city
         
-def get_customer_data():
-    time.sleep(1)
-    print('\nNow please provide your details to complete order.')
-    print('')
-    print("Follow informations are needed:\n-Name \n-Surname \n-Phone number \n-E-mail \n-Address \n")
-    
-    name = input('Please type in your name: ').capitalize()
-    surname = input('Please type in your surname: ').capitalize()
-    phone = int(input('Please type in your phone number: '))
-    email = input('Please type in your email: ')
-    print('')
-    print('And the last one, address in correct way House number, Street name, City')
-    print('')
-    house_num = int(input('House number: '))
-    street = input('Street name: ').capitalize()
-    city = input('City: ').capitalize()
-    
+    def get_customer_data():
+        time.sleep(1)
+        print('\nNow please provide your details to complete order.')
+        print('')
+        print("Follow informations are needed:\n-Name \n-Surname \n-Phone number \n-E-mail \n-Address \n")
         
-    customer = Customer(name, surname, phone,email, house_num,street, city)
+        name = input('Please type in your name: ').capitalize()
+        surname = input('Please type in your surname: ').capitalize()
+        phone = int(input('Please type in your phone number: '))
+        email = input('Please type in your email: ')
+        print('')
+        print('And the last one, address in correct way House number, Street name, City')
+        print('')
+        house_num = int(input('House number: '))
+        street = input('Street name: ').capitalize()
+        city = input('City: ').capitalize()
         
-    return customer
+            
+        customer = Customer(name, surname, phone,email, house_num,street, city) 
+        return customer
 
 def data_veryfication(customer):
     pass
+            
 
 
 def main():
     
     # hello()
+    show_stock()
     
+    # customer = Customer.get_customer_data()
     
-    customer = get_customer_data()
-    
-    data_veryfication(customer)
+    # data_veryfication(customer)
 
 main()
         
