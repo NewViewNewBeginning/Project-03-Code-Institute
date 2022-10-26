@@ -16,7 +16,7 @@ def hello():
         print('')
     else:
         print('\nSorry you pressed N or other key which close our system. You can come back if you wish and start again.\n')
-        exit()  
+        exit() 
         
 def show_stock():
     stock ={
@@ -29,37 +29,30 @@ def show_stock():
             'camera_price' : 40,
             'sat_price' : 120
         }
-
-    
+ 
     time.sleep(1)
     print('\nTo make it easy we are selling our products in sets which are including all cabling and connections.')
     time.sleep(1)
     print('\nYou can order maximum of 10 SAT TV sets and 1 set of CCTV with up to 16 cameras with single order\nOur current prices and avabilty will be shown below\n')
-    time.sleep(3)
-    for x,y in stock.items():
-        print(f'{x} = {y} units')
+    print('Do you want to continue?')
+    answer = input('Press Y to continue or N to leave: ')
+    if answer.lower() == 'y':
+        for x,y in stock.items():
+            print(f'\n{x} = {y} units')
         
-    print('\nCurrent prices\n')    
+        print('\nCurrent prices\n')    
         
-    for z,c in price.items():
-        print(f'{z} = ${c}')
+        for z,c in price.items():
+            print(f'{z} = ${c}')
+    else:
+        print('Thanks for visiting us!') 
+        exit()        
         
-    
-        
-        
-            
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    return stock, price
 
-
+def orders(stock,price):
+    print(stock, price)
+        
 class Customer:
     """Class customer will collect and validate customer details which will be provided at the end of purchasing proccess"""
     
@@ -99,9 +92,10 @@ def data_veryfication(customer):
 
 
 def main():
-    
-    # hello()
-    show_stock()
+    hello()
+    stock, price = show_stock()
+    orders(stock,price)
+   
     
     # customer = Customer.get_customer_data()
     
