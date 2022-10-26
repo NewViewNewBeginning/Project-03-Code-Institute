@@ -1,7 +1,20 @@
+import time
+from sys import exit
+
 def hello():
-    print('')
-    print(f'Hello and welcome in our SAT and TV orderd system')
-    print('')  
+    '''
+    Welcoming function which will show at begining
+    '''
+    print('Welcome before you enter can I ask for your name? ')
+    time.sleep(1)
+    answer = input('Press Y to continue, N to leave: ')
+    if answer.lower() == 'y':
+        name = input('Whats your name: ')
+        print('')
+        print(f'Hello {name} and welcome in our SAT and TV order system')
+        print('')
+    else:
+        exit()  
 
 
 class Customer:
@@ -35,8 +48,11 @@ def get_customer_data():
 
 
 def main():
+    
     hello()
-    cust = get_customer_data()
+    
+    
+    customer = get_customer_data()
 
 main()
         
