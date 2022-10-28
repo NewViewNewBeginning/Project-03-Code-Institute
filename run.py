@@ -19,39 +19,53 @@ def hello():
         exit() 
         
 def show_stock():
+    '''
+    That function show and contain amount of avaible stock units
+    '''
     stock ={
             'cctv_sets' : 100,
-            'cameras' : 1000,
             'sat_sets' : 300, 
         } 
     price = {
             'cctv_set_price' : 100,
-            'camera_price' : 40,
             'sat_price' : 120
         }
  
     time.sleep(1)
     print('\nTo make it easy we are selling our products in sets which are including all cabling and connections.')
     time.sleep(1)
-    print('\nYou can order maximum of 10 SAT TV sets and 1 set of CCTV with up to 16 cameras with single order\nOur current prices and avabilty will be shown below\n')
+    print('\nSAT TV set operate only 1 TV and set of CCTV including 4 cameras.\nOur current prices and avabilty will be shown below\n')
     print('Do you want to continue?')
     answer = input('Press Y to continue or N to leave: ')
     if answer.lower() == 'y':
+        print('\nAvaible stock:')
         for x,y in stock.items():
             print(f'\n{x} = {y} units')
         
-        print('\nCurrent prices\n')    
+        print('\nCurrent prices:\n')    
         
         for z,c in price.items():
-            print(f'{z} = ${c}')
+            print(f'{z} = ${c} each')
     else:
         print('Thanks for visiting us!') 
         exit()        
         
     return stock, price
 
-def orders(stock,price):
-    print(stock, price)
+def orders():
+    '''This function is taking number of ordered items'''
+    
+    print('Please type number of needed sets.')
+    
+    cctv = int(input('How many CCTV would you like: '))
+    
+    sattv = int(input('How many Sat Tv would you like: '))
+    
+    return [cctv , sattv]
+
+
+        
+        
         
 class Customer:
     """Class customer will collect and validate customer details which will be provided at the end of purchasing proccess"""
@@ -92,9 +106,10 @@ def data_veryfication(customer):
 
 
 def main():
-    hello()
+    # hello()
     stock, price = show_stock()
-    orders(stock,price)
+    orders(stock)
+    
    
     
     # customer = Customer.get_customer_data()
