@@ -1,10 +1,9 @@
-
 import time
 from sys import exit
 
 def hello():
     '''
-    Welcoming function which will show at begining and ask for name to get access
+    Welcoming function confirmig accessing and asking for name to personalize welcome msg 
     '''
     print('Welcome! Before you enter can I ask you for your name? ')
     time.sleep(1)
@@ -52,21 +51,36 @@ def show_stock():
         
     return stock, price
 
-def orders():
-    '''This function is taking number of ordered items'''
-    
-    print('Please type number of needed sets.')
-    
-    cctv = int(input('How many CCTV would you like: '))
-    
-    sattv = int(input('How many Sat Tv would you like: '))
-    
+def orders(stock):
+    '''This function is taking number of ordered items and checking is there enough to sell'''
+    print('\nPlease type number of needed sets.\n')
+
+    cctv_avaible = stock['cctv_sets']
+    while True:
+        cctv = int(input('How many CCTV would you like: '))
+        if cctv > cctv_avaible:
+            print(f'We have only {cctv_avaible} left')
+        else:
+            break
+    sat_avaible = stock['sat_sets']     
+    while True:
+        sattv = int(input('How many Sat Tv would you like: '))
+        if sattv > sat_avaible:
+                print(f'We have only {cctv_avaible} left')
+        else:
+            break
+        
     return [cctv , sattv]
 
+def calc_order(order, price):
+    total = (int(order[0]) * price['cctv_set_price']) + (int(order[1]) * price['sat_price'])
+    
+    print(f'\nYour current total is ${total} if you want to change your order please type [Y] for Yes or [N] for No and proceed to complete purchase.\n')
 
-        
-        
-        
+    return total, order
+
+
+  
 class Customer:
     """Class customer will collect and validate customer details which will be provided at the end of purchasing proccess"""
     
@@ -95,8 +109,7 @@ class Customer:
         house_num = int(input('House number: '))
         street = input('Street name: ').capitalize()
         city = input('City: ').capitalize()
-        
-            
+          
         customer = Customer(name, surname, phone,email, house_num,street, city) 
         return customer
 
@@ -106,13 +119,19 @@ def data_veryfication(customer):
 
 
 def main():
-    # hello()
+    hello()
     stock, price = show_stock()
-    orders(stock)
+    order = orders(stock)
+    calc_order(order, price)
     
-   
-    
-    # customer = Customer.get_customer_data()
+    while True:
+        answer = input('Y to change N to complete order: ')
+        if answer.lower() == 'y':
+            order = orders(stock)
+            calc_order(order, price)
+        else:    
+            customer = Customer.get_customer_data()
+            break
     
     # data_veryfication(customer)
 
