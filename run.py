@@ -115,8 +115,6 @@ def get_customer_data():
     customer = Customer(name, surname, phone,email, house_num,street, city) 
     return customer
 
-def data_veryfication(customer):
-    pass
 
 def complete_order(customer, stock, order):
     '''Order summary, subtract stock '''
@@ -141,7 +139,6 @@ def main():
             customer = get_customer_data()
             break
     complete_order(customer, stock, order)
-    # data_veryfication(customer)
 
 main()
 
