@@ -82,7 +82,6 @@ def calc_order(order, price):
 
   
 class Customer:
-    """Class customer will collect and validate customer details which will be provided at the end of purchasing proccess"""
     
     def __init__(self,name,surname,phone,email,house_num,street,city):
         self.name = name
@@ -93,25 +92,26 @@ class Customer:
         self.street = street
         self.city = city
         
-    def get_customer_data():
-        time.sleep(1)
-        print('\nNow please provide your details to complete order.')
-        print('')
-        print("Follow informations are needed:\n-Name \n-Surname \n-Phone number \n-E-mail \n-Address \n")
-        
-        name = input('Please type in your name: ').capitalize()
-        surname = input('Please type in your surname: ').capitalize()
-        phone = int(input('Please type in your phone number: '))
-        email = input('Please type in your email: ')
-        print('')
-        print('And the last one, address in correct way House number, Street name, City')
-        print('')
-        house_num = int(input('House number: '))
-        street = input('Street name: ').capitalize()
-        city = input('City: ').capitalize()
-          
-        customer = Customer(name, surname, phone,email, house_num,street, city) 
-        return customer
+def get_customer_data():
+    '''Collecting customer data entered by inputs and return them as customer object'''
+    time.sleep(1)
+    print('\nNow please provide your details to complete order.')
+    print('')
+    print("Follow informations are needed:\n-Name \n-Surname \n-Phone number \n-E-mail \n-Address \n")
+            
+    name = input('Please type in your name: ').capitalize()
+    surname = input('Please type in your surname: ').capitalize()
+    phone = int(input('Please type in your phone number: '))
+    email = input('Please type in your email: ')
+    print('')
+    print('And the last one, address in correct way House number, Street name, City')
+    print('')
+    house_num = int(input('House number: '))
+    street = input('Street name: ').capitalize()
+    city = input('City: ').capitalize()
+            
+    customer = Customer(name, surname, phone,email, house_num,street, city) 
+    return customer
 
 def data_veryfication(customer):
     pass
@@ -130,11 +130,13 @@ def main():
             order = orders(stock)
             calc_order(order, price)
         else:    
-            customer = Customer.get_customer_data()
+            customer = get_customer_data()
             break
     
     # data_veryfication(customer)
 
 main()
+
+
         
     
