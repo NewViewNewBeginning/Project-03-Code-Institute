@@ -5,11 +5,11 @@ def hello():
     '''
     Welcoming function confirmig accessing and asking for name to personalize welcome msg 
     '''
-    print('Welcome! Before you enter can I ask you for your name? ')
+    print('\nWelcome! Before you enter can I ask you for your name? \n')
     time.sleep(1)
     answer = input('Press Y to continue, N to leave: ')
     if answer.lower() == 'y':
-        name = input('Whats your name: ').capitalize()
+        name = input('\nWhats your name: ').capitalize()
         print('')
         print(f'Hello {name} and welcome in our SAT TV and CCTV order system')
         print('')
@@ -39,7 +39,7 @@ def show_stock():
     if answer.lower() == 'y':
         print('\nAvaible stock:')
         for x,y in stock.items():
-            print(f'\n{x} = {y} units')
+            print(f'\n{x} = -->{y}<-- units')
         
         print('\nCurrent prices:\n')    
         
@@ -74,8 +74,8 @@ def orders(stock):
 
 def calc_order(order, price):
     total = (int(order[0]) * price['cctv_set_price']) + (int(order[1]) * price['sat_price'])
-    
-    print(f'\nYour current total is ${total} if you want to change your order please type [Y] for Yes or [N] for No and proceed to complete purchase.\n')
+    time.sleep(2)
+    print(f'\nYour current total is ${total} if you want to change your order please type [Y] for Yes or [N] for No and proceed to complete order.\n')
 
     return total, order
 
@@ -109,15 +109,23 @@ def get_customer_data():
     house_num = int(input('House number: '))
     street = input('Street name: ').capitalize()
     city = input('City: ').capitalize()
+    
+    print('\nThank You for your details!')
             
     customer = Customer(name, surname, phone,email, house_num,street, city) 
     return customer
 
 def data_veryfication(customer):
     pass
-            
 
-
+def complete_order(customer, stock, order):
+    '''Order summary, subtract stock '''
+    print(f'\nYour order is accepted and it will be shipped to you in up to 2 days on address:\n {customer.house_num} {customer.street} {customer.city}\n')
+    
+    stock['cctv_sets'] = stock['cctv_sets'] - int(order[0])
+    stock['sat_sets'] = stock['sat_sets']  - int(order[1])
+    
+    
 def main():
     hello()
     stock, price = show_stock()
@@ -132,7 +140,7 @@ def main():
         else:    
             customer = get_customer_data()
             break
-    
+    complete_order(customer, stock, order)
     # data_veryfication(customer)
 
 main()
