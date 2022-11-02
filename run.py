@@ -17,9 +17,11 @@ def hello():
         print('')
         print(f'Hello {name} and welcome in our SAT TV and CCTV order system')
         print('')
-    else:
+    elif answer.lower() == 'n':
         print('\nSorry you pressed N or other key which close our system. You can come back if you wish and start again.\n')
-        exit() 
+        exit()
+    else:
+        print('\nMake sure to type [Y] or [N]\n') 
         
 def show_stock():
     '''
@@ -106,11 +108,11 @@ def get_customer_data():
     name = pyip.inputStr('Please type in your name: ').capitalize()
     surname = pyip.inputStr('Please type in your surname: ').capitalize()
     while True:
-        phone = input('Please type in your phone number: ')
-        print('Please use correct number for Irish mobile 08xxxxxxxx with 10 digits')
+        phone = input('Please type in your mobile phone number: \n')
+        print('Please use correct number for Irish mobile 08xxxxxxxx with 10 digits\n')
         
         if len(phone) == 10 and phone[0] == '0' and phone[1] == '8' and phone.isdigit():
-            print('Correct number')
+            print('Correct number\n')
             break
         else:
             print('Please provide valid number, only numbers! ')
@@ -146,7 +148,7 @@ def main():
     calc_order(order, price)
     
     while True:
-        answer = input('Y to change N to complete order: ')
+        answer = input('[N] to change [Y] to complete order: ')
         if answer.lower() == 'y':
             order = orders(stock)
             calc_order(order, price)
