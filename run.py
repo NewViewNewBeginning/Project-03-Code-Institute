@@ -40,22 +40,37 @@ def show_stock():
     print('\nTo make it easy we are selling our products in sets which are including all cabling and needed connections.')
     time.sleep(1)
     print('\nSAT TV set operate only 1 TV and set of CCTV including 4 cameras.\nOur current prices and avabilty will be shown below\n')
-    print('Do you want to continue and display avaible stock and prices?')
+    print('Do you want to continue to display avaible stock and prices?')
     answer = input('Press [Y] to continue or [N] to leave: ')
     if answer.lower() == 'y':
         print('\nAvaible stock:')
         for x,y in stock.items():
+            
             print(f'\n{x} = -->{y}<-- units')
         
         print('\nCurrent prices:\n')    
         
         for z,c in price.items():
-            print(f'{z} = ${c} each')
+            
+            print(f'{z} = -->${c}<-- each')
     elif answer.lower() == 'n':
         print('Thanks for visiting us! Hope to see you again.') 
         exit()
     else:
-        print('\nMake sure to type [Y] or [N]\n')        
+        print('\nMake sure to type [Y] or [N]\n')
+        
+    time.sleep(2)    
+    print('\nWould you like to continue?\n')
+    
+    answer = pyip.inputYesNo('Give [Y] to continue [N] to leave? ')  
+    
+    if answer == 'yes':
+        time.sleep(1)
+        print("Thank you and let's go to order section")
+    else:
+        print('Thank you, hope to see you again!')
+        exit()
+              
         
     return stock, price
 
@@ -64,6 +79,9 @@ def orders(stock):
     print('\nPlease type number of needed sets.\n')
 
     cctv_avaible = stock['cctv_sets']
+    
+    
+    
     while True:
         cctv = pyip.inputInt('How many CCTV would you like: ')
         if cctv > cctv_avaible:
@@ -137,7 +155,7 @@ def get_customer_data():
 
 def complete_order(customer, stock, order):
     '''Order summary, subtract stock '''
-    print(f'\nYour order is accepted and it will be shipped to you in up to 2 days on address:\n {customer.house_num} {customer.street} {customer.city}\n')
+    print(f'\nYour order is accepted and it will be shipped to you in up to 2 days on address:\n {customer.house_num} {customer.street} {customer.city}\n Thank you for shopping in our shop')
     
     stock['cctv_sets'] = stock['cctv_sets'] - int(order[0])
     stock['sat_sets'] = stock['sat_sets']  - int(order[1])
@@ -150,7 +168,7 @@ def main():
     calc_order(order, price)
     
     while True:
-        answer = input('[N] to change [Y] to complete order: ')
+        answer = input('[Y] to change [N] to complete order: ')
         if answer.lower() == 'y':
             order = orders(stock)
             calc_order(order, price)
