@@ -105,7 +105,18 @@ def get_customer_data():
             
     name = pyip.inputStr('Please type in your name: ').capitalize()
     surname = pyip.inputStr('Please type in your surname: ').capitalize()
-    phone = pyip.inputInt('Please type in your phone number: ')
+    while True:
+        phone = input('Please type in your phone number: ')
+        print('Please use correct number for Irish mobile 08xxxxxxxx with 10 digits')
+        
+        if len(phone) == 10 and phone[0] == '0' and phone[1] == '8' and phone.isdigit():
+            print('Correct number')
+            break
+        else:
+            print('Please provide valid number, only numbers! ')
+            continue
+            
+    
     email = pyip.inputEmail('Please type in your email: ')
     print('')
     print('And the last one, address in correct way House number, Street name, City')
