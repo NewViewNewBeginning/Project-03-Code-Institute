@@ -10,9 +10,9 @@ def hello():
     '''
     print('\nWelcome! Before you enter can I ask you for your name? \n')
     time.sleep(1)
-    answer = input('Press Y to continue, N to leave: ')
+    answer = pyip.inputStr('Press Y to continue, N to leave: ')
     if answer.lower() == 'y':
-        name = input('\nWhats your name: ').capitalize()
+        name = pyip.inputStr('\nWhats your name: ').capitalize()
         print('')
         print(f'Hello {name} and welcome in our SAT TV and CCTV order system')
         print('')
@@ -60,14 +60,14 @@ def orders(stock):
 
     cctv_avaible = stock['cctv_sets']
     while True:
-        cctv = int(input('How many CCTV would you like: '))
+        cctv = pyip.inputInt('How many CCTV would you like: ')
         if cctv > cctv_avaible:
             print(f'We have only {cctv_avaible} left')
         else:
             break
     sat_avaible = stock['sat_sets']     
     while True:
-        sattv = int(input('How many Sat Tv would you like: '))
+        sattv = pyip.inputInt('How many Sat Tv would you like: ')
         if sattv > sat_avaible:
                 print(f'We have only {cctv_avaible} left')
         else:
@@ -102,16 +102,16 @@ def get_customer_data():
     print('')
     print("Follow informations are needed:\n-Name \n-Surname \n-Phone number \n-E-mail \n-Address \n")
             
-    name = input('Please type in your name: ').capitalize()
-    surname = input('Please type in your surname: ').capitalize()
-    phone = int(input('Please type in your phone number: '))
-    email = input('Please type in your email: ')
+    name = pyip.inputStr('Please type in your name: ').capitalize()
+    surname = pyip.inputStr('Please type in your surname: ').capitalize()
+    phone = pyip.inputInt('Please type in your phone number: ')
+    email = pyip.inputEmail('Please type in your email: ')
     print('')
     print('And the last one, address in correct way House number, Street name, City')
     print('')
-    house_num = int(input('House number: '))
-    street = input('Street name: ').capitalize()
-    city = input('City: ').capitalize()
+    house_num = pyip.inputNum('House number: ')
+    street = pyip.inputStr('Street name: ').capitalize()
+    city = pyip.inputStr('City: ').capitalize()
     
     print('\nThank You for your details!')
             
