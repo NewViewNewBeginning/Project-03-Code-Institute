@@ -11,7 +11,7 @@ def hello():
     '''
     print('\nWelcome! Before you enter can I ask you for your name? \n')
     time.sleep(1)
-    answer = pyip.inputStr('Press Y to continue, N to leave: ')
+    answer = pyip.inputStr('Press [Y] to continue, [N] to leave: ')
     if answer.lower() == 'y':
         name = pyip.inputStr('\nWhats your name: ').capitalize()
         print('')
@@ -37,11 +37,11 @@ def show_stock():
         }
  
     time.sleep(1)
-    print('\nTo make it easy we are selling our products in sets which are including all cabling and connections.')
+    print('\nTo make it easy we are selling our products in sets which are including all cabling and needed connections.')
     time.sleep(1)
     print('\nSAT TV set operate only 1 TV and set of CCTV including 4 cameras.\nOur current prices and avabilty will be shown below\n')
-    print('Do you want to continue?')
-    answer = input('Press Y to continue or N to leave: ')
+    print('Do you want to continue and display avaible stock and prices?')
+    answer = input('Press [Y] to continue or [N] to leave: ')
     if answer.lower() == 'y':
         print('\nAvaible stock:')
         for x,y in stock.items():
@@ -51,9 +51,11 @@ def show_stock():
         
         for z,c in price.items():
             print(f'{z} = ${c} each')
+    elif answer.lower() == 'n':
+        print('Thanks for visiting us! Hope to see you again.') 
+        exit()
     else:
-        print('Thanks for visiting us!') 
-        exit()        
+        print('\nMake sure to type [Y] or [N]\n')        
         
     return stock, price
 
