@@ -124,12 +124,19 @@ def get_customer_data():
     print('\nNow please provide your details to complete order.')
     print('')
     print("Follow informations are needed:\n-Name \n-Surname \n-Phone number \n-E-mail \n-Address \n")
-            
-    name = pyip.inputStr('Please type in your name: ').capitalize()
-    surname = pyip.inputStr('Please type in your surname: ').capitalize()
+    
     while True:
+        name = pyip.inputStr('Please type in your name: ').capitalize()
+        surname = pyip.inputStr('Please type in your surname: ').capitalize()
+        if not name.isalpha() or not surname.isalpha():
+            print('Enter only letters')
+            continue
+        else:
+            break        
+    
+    while True:
+        print('\nPlease use correct number for Irish mobile 08xxxxxxxx with 10 digits\n')
         phone = input('Please type in your mobile phone number: \n')
-        print('Please use correct number for Irish mobile 08xxxxxxxx with 10 digits\n')
         
         if len(phone) == 10 and phone[0] == '0' and phone[1] == '8' and phone.isdigit():
             print('Correct number\n')
@@ -155,7 +162,9 @@ def get_customer_data():
 
 def complete_order(customer, stock, order):
     '''Order summary, subtract stock '''
-    print(f'\nYour order is accepted and it will be shipped to you in up to 2 days on address:\n {customer.house_num} {customer.street} {customer.city}\n Thank you for shopping in our shop')
+    time.sleep(2)
+    print(f'\nYour order is accepted and it will be shipped to you in up to 2 days on address:\n {customer.house_num} {customer.street} {customer.city}\n ')
+    print('Thank you for visisting and buing in our shop!')
     
     stock['cctv_sets'] = stock['cctv_sets'] - int(order[0])
     stock['sat_sets'] = stock['sat_sets']  - int(order[1])
