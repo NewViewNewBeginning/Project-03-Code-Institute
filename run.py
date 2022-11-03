@@ -5,7 +5,7 @@ import pyinputplus as pyip
 
 def hello():
     '''
-    Welcoming function confirmig accessing and asking for name to personalize welcome msg 
+    Welcoming function confirmig accessing and asking for name to personalize welcome message. 
     '''
     print('\nWelcome! Before you enter can I ask you for your name? \n')
     time.sleep(1)
@@ -22,7 +22,7 @@ def hello():
         
 def show_stock(stock,price):
     '''
-    That function show and contain amount of avaible stock units
+    Function showing amount of avaible stock/price units
     '''
    
     time.sleep(1)
@@ -46,8 +46,6 @@ def show_stock(stock,price):
         print('Thanks for visiting us! Hope to see you again.') 
         exit()
     
-
-        
     time.sleep(2)    
     print('\nWould you like to continue?\n')
     
@@ -64,13 +62,13 @@ def show_stock(stock,price):
     return stock, price
 
 def orders(stock):
-    '''This function is taking number of ordered items and checking is there enough to sell'''
+    '''
+    This function is taking number of ordered items and checking is there enough in stock to sell needed amount to customer.
+    '''
     print('\nPlease type number of needed sets.\n')
 
     cctv_avaible = stock['cctv_sets']
-    
-    
-    
+
     while True:
         cctv = pyip.inputInt('How many CCTV would you like: ')
         if cctv > cctv_avaible:
@@ -88,6 +86,10 @@ def orders(stock):
     return [cctv , sattv]
 
 def calc_order(order, price):
+    '''
+    Calculating current order with possibilty to change it befor go to next step.
+    '''
+    
     total = (int(order[0]) * price['cctv_set_price']) + (int(order[1]) * price['sat_price'])
     time.sleep(2)
     print(f'\nYour current total is ${total} if you want to change your order please type [Y] for Yes or [N] for No and proceed to complete order.\n')
@@ -99,10 +101,10 @@ def calc_order(order, price):
 
     return total, order
 
-
-  
 class Customer:
-    
+    '''
+    Each customer is created by using Class
+    '''
     def __init__(self,name,surname,phone,email,house_num,street,city):
         self.name = name
         self.surname = surname
@@ -113,7 +115,9 @@ class Customer:
         self.city = city
         
 def get_customer_data():
-    '''Collecting customer data entered by inputs and return them as customer object'''
+    '''
+    Collecting customer data entered by inputs and return them as customer object also basic validation done by use pyinputplus library
+    '''
     time.sleep(1)
     print('\nNow please provide your details to complete order.')
     print('')
@@ -155,7 +159,9 @@ def get_customer_data():
 
 
 def complete_order(customer, stock, order):
-    '''Order summary, subtract stock '''
+    
+    '''Order summary, subtract stock and complete program'''
+    
     time.sleep(2)
     print(f'\nYour order is accepted and it will be shipped to you in up to 2 days on address:\n {customer.house_num} {customer.street} {customer.city}\n ')
     print('Thank you for visisting and buing in our shop!\n')
@@ -165,6 +171,9 @@ def complete_order(customer, stock, order):
     
     
 def main():
+    '''
+    Main function to keep flow of the program and start functions in correct order. Stock and Price values also keeps in it.
+    '''
     stock ={
             'cctv_sets' : 100,
             'sat_sets' : 300, 
@@ -175,7 +184,6 @@ def main():
     }
     
     hello()
-    
     show_stock(stock, price)
     order = orders(stock)
     calc_order(order, price)
@@ -189,7 +197,7 @@ def main():
             customer = get_customer_data()
             break
     complete_order(customer, stock, order)
-
+    
 main()
 
 
