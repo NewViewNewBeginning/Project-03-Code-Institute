@@ -10,36 +10,28 @@ def hello():
     print('\nWelcome! Before you enter can I ask you for your name? \n')
     time.sleep(1)
     answer = pyip.inputYesNo('Press [Y] to continue, [N] to leave: ')
-    if answer == 'y':
+    if answer == 'yes':
         name = pyip.inputStr('\nWhats your name: ').capitalize()
         print('')
         print(f'Hello {name} and welcome in our SAT TV and CCTV order system')
         print('')
-    elif answer == 'n':
-        print('\nSorry you pressed N or other key which close our system. You can come back if you wish and start again.\n')
+    elif answer == 'no':
+        print('\nSorry you pressed No which is closing system. You can come back if you wish and start again.\n')
         exit()
     
         
-def show_stock():
+def show_stock(stock,price):
     '''
     That function show and contain amount of avaible stock units
     '''
-    stock ={
-            'cctv_sets' : 100,
-            'sat_sets' : 300, 
-        } 
-    price = {
-            'cctv_set_price' : 100,
-            'sat_price' : 120
-        }
- 
+   
     time.sleep(1)
     print('\nTo make it easy we are selling our products in sets which are including all cabling and needed connections.')
     time.sleep(1)
     print('\nSAT TV set operate only 1 TV and set of CCTV including 4 cameras.\nOur current prices and avabilty will be shown below\n')
     print('Do you want to continue to display avaible stock and prices?')
     answer = pyip.inputYesNo('Press [Y] to continue or [N] to leave: ')
-    if answer.lower() == 'y':
+    if answer == 'yes':
         print('\nAvaible stock:')
         for x,y in stock.items():
             
@@ -50,7 +42,7 @@ def show_stock():
         for z,c in price.items():
             
             print(f'{z} = -->${c}<-- each')
-    elif answer.lower() == 'n':
+    elif answer == 'no':
         print('Thanks for visiting us! Hope to see you again.') 
         exit()
     
@@ -173,17 +165,27 @@ def complete_order(customer, stock, order):
     
     
 def main():
+    stock ={
+            'cctv_sets' : 100,
+            'sat_sets' : 300, 
+        } 
+    price = {
+            'cctv_set_price' : 100,
+            'sat_price' : 120
+    }
+    
     hello()
-    stock, price = show_stock()
+    
+    show_stock(stock, price)
     order = orders(stock)
     calc_order(order, price)
     
     while True:
         answer = pyip.inputYesNo('[Y] to change [N] to complete order: ')
-        if answer == 'y':
+        if answer == 'yes':
             order = orders(stock)
             calc_order(order, price)
-        else:    
+        elif answer == 'no':    
             customer = get_customer_data()
             break
     complete_order(customer, stock, order)
