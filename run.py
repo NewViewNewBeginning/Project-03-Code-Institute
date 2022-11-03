@@ -1,12 +1,14 @@
 import time
 from sys import exit
 import pyinputplus as pyip
-
+import pyfiglet
 
 def hello():
     '''
     Welcoming function confirmig accessing and asking for name to personalize welcome message. 
     '''
+    logo = pyfiglet.figlet_format("SAT & CCTV")
+    print(logo)
     print('\nWelcome! Before you enter can I ask you for your name? \n')
     time.sleep(1)
     answer = pyip.inputYesNo('Press [Y] to continue, [N] to leave: ')
