@@ -1,8 +1,6 @@
 import time
 from sys import exit
 import pyinputplus as pyip
-import phonenumbers
-
 
 
 def hello():
@@ -11,17 +9,16 @@ def hello():
     '''
     print('\nWelcome! Before you enter can I ask you for your name? \n')
     time.sleep(1)
-    answer = pyip.inputStr('Press [Y] to continue, [N] to leave: ')
-    if answer.lower() == 'y':
+    answer = pyip.inputYesNo('Press [Y] to continue, [N] to leave: ')
+    if answer == 'y':
         name = pyip.inputStr('\nWhats your name: ').capitalize()
         print('')
         print(f'Hello {name} and welcome in our SAT TV and CCTV order system')
         print('')
-    elif answer.lower() == 'n':
+    elif answer == 'n':
         print('\nSorry you pressed N or other key which close our system. You can come back if you wish and start again.\n')
         exit()
-    else:
-        print('\nMake sure to type [Y] or [N]\n') 
+    
         
 def show_stock():
     '''
@@ -41,7 +38,7 @@ def show_stock():
     time.sleep(1)
     print('\nSAT TV set operate only 1 TV and set of CCTV including 4 cameras.\nOur current prices and avabilty will be shown below\n')
     print('Do you want to continue to display avaible stock and prices?')
-    answer = input('Press [Y] to continue or [N] to leave: ')
+    answer = pyip.inputYesNo('Press [Y] to continue or [N] to leave: ')
     if answer.lower() == 'y':
         print('\nAvaible stock:')
         for x,y in stock.items():
@@ -56,8 +53,8 @@ def show_stock():
     elif answer.lower() == 'n':
         print('Thanks for visiting us! Hope to see you again.') 
         exit()
-    else:
-        print('\nMake sure to type [Y] or [N]\n')
+    
+
         
     time.sleep(2)    
     print('\nWould you like to continue?\n')
@@ -102,6 +99,11 @@ def calc_order(order, price):
     total = (int(order[0]) * price['cctv_set_price']) + (int(order[1]) * price['sat_price'])
     time.sleep(2)
     print(f'\nYour current total is ${total} if you want to change your order please type [Y] for Yes or [N] for No and proceed to complete order.\n')
+    
+    if total == 0:
+        print('\nI see you choose 0 sets\nYou need to start again if you change your mind.')
+        time.sleep(2)
+        exit()
 
     return total, order
 
@@ -164,7 +166,7 @@ def complete_order(customer, stock, order):
     '''Order summary, subtract stock '''
     time.sleep(2)
     print(f'\nYour order is accepted and it will be shipped to you in up to 2 days on address:\n {customer.house_num} {customer.street} {customer.city}\n ')
-    print('Thank you for visisting and buing in our shop!')
+    print('Thank you for visisting and buing in our shop!\n')
     
     stock['cctv_sets'] = stock['cctv_sets'] - int(order[0])
     stock['sat_sets'] = stock['sat_sets']  - int(order[1])
@@ -177,8 +179,8 @@ def main():
     calc_order(order, price)
     
     while True:
-        answer = input('[Y] to change [N] to complete order: ')
-        if answer.lower() == 'y':
+        answer = pyip.inputYesNo('[Y] to change [N] to complete order: ')
+        if answer == 'y':
             order = orders(stock)
             calc_order(order, price)
         else:    
