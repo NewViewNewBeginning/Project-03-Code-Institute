@@ -24,10 +24,15 @@ def get_units():
     stock = SHEET.worksheet('stock')
     
     
-    cctv_sets = stock.acell('A2').value
-    sat_sets = stock.acell('B2').value
+    cctv_sets = int(stock.acell('A2').value)
+    sat_sets = int(stock.acell('B2').value)
+    if (cctv_sets or sat_sets) < 25 :
+        print("We had delivery and all stock back to full capacity")
+        cctv_sets = 1000
+        sat_sets = 1000 
     return [cctv_sets, sat_sets]
-    
+units = get_units()
+print(units)    
 def get_prices():
     '''
     Taking prices from google sheet for cctv and sat tv
@@ -111,7 +116,7 @@ def orders(stock):
     while True:
         order_sattv = pyip.inputInt('How many Sat Tv would you like: ')
         if order_sattv > sat_avaible:
-                print(f'We have only {cctv_avaible} left')
+                print(f'We have only {sat_avaible} left')
         else:
             break
         
@@ -183,50 +188,58 @@ def get_customer_data():
     house_num = pyip.inputNum('House number: ')
     street = pyip.inputStr('Street name: ').capitalize()
     city = pyip.inputStr('City: ').capitalize()
-    
-    print('\nThank You for your details!')
-            
+       
     customer = Customer(name, surname, phone,email, house_num,street, city) 
     return customer
+    
 
+def update_stock(stock,order):
+    to_update_stock = SHEET.worksheet('stock')
+    update_cctv = int(stock[0]) - int(order[0])
+    print(update_cctv)
+    update_sat = int(stock[1]) - int(order[1])
+    print(update_sat)
+    to_update_stock.update('A2', update_cctv)
+    to_update_stock.update('B2', update_sat)
+   
 
-def complete_order(customer, stock, order):
+def complete_order(customer):
     
     '''Order summary, subtract stock and complete program'''
-    
+    print(f'\nThank You for your details {customer.name} {customer.surname}!')
     time.sleep(2)
-    print(f'\nYour order is accepted and it will be shipped to you in up to 2 days on address:\n {customer.house_num} {customer.street} {customer.city}\n ')
-    print('Thank you for visisting and buing in our shop!\n')
     
-    # stock['cctv_sets'] = stock['cctv_sets'] - int(order[0])
-    # stock['sat_sets'] = stock['sat_sets']  - int(order[1])
+    print(f'\nYour order is accepted and it will be shipped to you in up to 2 days on address:\n {customer.house_num} {customer.street} {customer.city}\n ')
+    print('Thank you for visisting and buying in our shop!\n')
+    
     
     
 def main():
     '''
     Main function to keep flow of the program and start functions in correct order. 
     '''
-    stock = get_units()
-    price = get_prices()
+    # stock = get_units()
+    # price = get_prices()
     
-    hello()
-    show_stock(stock, price)
+    # hello()
+    # show_stock(stock, price)
 
-    order = orders(stock)
+    # order = orders(stock)
 
-    calc_order(order, price)
+    # calc_order(order, price)
     
-    while True:
-        answer = pyip.inputYesNo('[Y] to change [N] to complete order: ')
-        if answer == 'yes':
-            order = orders(stock)
-            calc_order(order, price)
-        elif answer == 'no':    
-            customer = get_customer_data()
-            break
-    complete_order(customer, stock, order)
+    # while True:
+    #     answer = pyip.inputYesNo('[Y] to change [N] to complete order: ')
+    #     if answer == 'yes':
+    #         order = orders(stock)
+    #         calc_order(order, price)
+    #     elif answer == 'no':    
+    #         customer = get_customer_data()
+    #         break
+    # update_stock(stock,order)
+    # complete_order(customer)
     
-main()
+# main()
 
 
         
