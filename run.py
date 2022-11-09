@@ -15,12 +15,36 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('CCTV_SAT')
 
-stock = SHEET.worksheet('stock')
-
-stockval = stock.get_all_values()
-print(stockval)
 
 
+def get_units():
+    '''
+    Taking avaible units from google sheet.
+    '''
+    stock = SHEET.worksheet('stock')
+    
+    
+    cctv_sets = stock.acell('A2').value
+    sat_sets = stock.acell('B2').value
+    return [cctv_sets, sat_sets]
+    
+def get_prices():
+    '''
+    Taking prices from google sheet for cctv and sat tv
+    '''
+    price = SHEET.worksheet('price')
+    cctv_price = price.acell('A2').value
+    sat_price = price.acell('B2').value
+    
+    return [cctv_price, sat_price]
+
+
+    
+
+
+
+
+    
 
 
 # def hello():
@@ -194,20 +218,16 @@ print(stockval)
     
 # def main():
 #     '''
-#     Main function to keep flow of the program and start functions in correct order. Stock and Price values also keeps in it.
+#     Main function to keep flow of the program and start functions in correct order. 
 #     '''
-#     stock ={
-#             'cctv_sets' : 100,
-#             'sat_sets' : 300, 
-#         } 
-#     price = {
-#             'cctv_set_price' : 100,
-#             'sat_price' : 120
-#     }
+#     stock = get_units()
+#     price = get_prices()
     
 #     hello()
 #     show_stock(stock, price)
+
 #     order = orders(stock)
+
 #     calc_order(order, price)
     
 #     while True:
