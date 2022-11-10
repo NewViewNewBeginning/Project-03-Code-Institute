@@ -217,22 +217,14 @@ def complete_order(customer, data,total):
     
     print(f'\nYour order is accepted and it will be shipped to you in up to 2 days on address:\n {customer.house_num} {customer.street} {customer.city}\n ')
     print('Thank you for visisting and buying in our shop!\n')
-    print(data)
-    print(total)
-    paid = str(total[0])
-    ordered_cctv = str(total[1][0])
-    ordered_tv = str(total[1][1])
-    print(paid,ordered_cctv,ordered_tv)
-     
-    new_order = SHEET.worksheet('orders')
+    data = data[0]
+    paid = total[0]
+    ordered_cctv = total[1][0]
+    ordered_tv = total[1][1]
+  
+    new_order = SHEET.worksheet('orders')    
+    new_order.append_row([data,ordered_cctv, ordered_tv, paid])
     
-    new_order.append_row([data,total])
-    
-    
-    
-   
-
-
 def main():
     '''
     Main function to keep flow of the program and start functions in correct order. 
