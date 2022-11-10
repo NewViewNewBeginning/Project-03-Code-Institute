@@ -136,7 +136,7 @@ def calc_order(order, price):
         time.sleep(2)
         exit()
 
-    return total, order
+    return [total, order]
 
 class Customer:
     '''
@@ -208,18 +208,29 @@ def update_stock(stock,order):
     to_update_stock.update('B2', update_sat)
    
 
-def complete_order(customer, data):
+def complete_order(customer, data,total):
     '''
-    Order summary, send customer data to google sheet
+    Order summary, send customer data to google sheet with order info
     '''
     print(f'\nThank You for your details {customer.name} {customer.surname}!')
     time.sleep(2)
     
     print(f'\nYour order is accepted and it will be shipped to you in up to 2 days on address:\n {customer.house_num} {customer.street} {customer.city}\n ')
     print('Thank you for visisting and buying in our shop!\n')
-    
+    print(data)
+    print(total)
+    paid = str(total[0])
+    ordered_cctv = str(total[1][0])
+    ordered_tv = str(total[1][1])
+    print(paid,ordered_cctv,ordered_tv)
+     
     new_order = SHEET.worksheet('orders')
-    new_order.append_row(data)
+    
+    new_order.append_row([data,total])
+    
+    
+    
+   
 
 
 def main():
@@ -229,10 +240,10 @@ def main():
     stock = get_units()
     price = get_prices()
 
-    hello()
-    show_stock(stock, price)
+    # hello()
+    # show_stock(stock, price)
     order = orders(stock)
-    calc_order(order, price)
+    total = calc_order(order, price)
   
     while True:
         answer = pyip.inputYesNo('[Y] to change [N] to complete order: ')
@@ -243,8 +254,9 @@ def main():
             customer, data = get_customer_data()
             break
         
-    complete_order(customer, data)
+    complete_order(customer,data,total)
     update_stock(stock,order)
+    
     
 main()
 
