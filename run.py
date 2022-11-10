@@ -22,8 +22,6 @@ def get_units():
     Taking avaible units from google sheet.
     '''
     stock = SHEET.worksheet('stock')
-    
-    
     cctv_sets = int(stock.acell('A2').value)
     sat_sets = int(stock.acell('B2').value)
     if (cctv_sets or sat_sets) < 25 :
@@ -32,8 +30,7 @@ def get_units():
         sat_sets = 1000 
     return [cctv_sets, sat_sets]
 
-
-    
+  
 def get_prices():
     '''
     Taking prices from google sheet for cctv and sat tv
@@ -52,7 +49,7 @@ def hello():
     print(logo)
     print('\nWelcome! Before you enter can I ask you for your name? \n')
     time.sleep(1)
-    answer = pyip.inputYesNo('Press [Y] to continue, [N] to leave: ')
+    answer = pyip.inputYesNo('Press [Y] to continue, [N] to leave:\n ')
     if answer == 'yes':
         name = pyip.inputStr('\nWhats your name: ').capitalize()
         print('')
@@ -73,7 +70,7 @@ def show_stock(stock,price):
     time.sleep(1)
     print('\nSAT TV set operate only 1 TV and set of CCTV including 4 cameras.\nOur current prices and avabilty will be shown below\n')
     print('Do you want to continue to display avaible stock and prices?')
-    answer = pyip.inputYesNo('Press [Y] to continue or [N] to leave: ')
+    answer = pyip.inputYesNo('Press [Y] to continue or [N] to leave:\n ')
     if answer == 'yes':
         print('\nAvaible stock:\n')
         
@@ -87,7 +84,7 @@ def show_stock(stock,price):
     time.sleep(2)    
     print('\nWould you like to continue?\n')
     
-    answer = pyip.inputYesNo('Give [Y] to continue [N] to leave? ')  
+    answer = pyip.inputYesNo('Give [Y] to continue [N] to leave?: \n ')  
     
     if answer == 'yes':
         time.sleep(1)
@@ -107,14 +104,14 @@ def orders(stock):
     cctv_avaible = int(stock[0])
 
     while True:
-        order_cctv = pyip.inputInt('How many CCTV would you like: ')
+        order_cctv = pyip.inputInt('How many CCTV would you like: \n')
         if order_cctv > cctv_avaible:
             print(f'We have only {cctv_avaible} left')
         else:
             break
     sat_avaible = int(stock[1])     
     while True:
-        order_sattv = pyip.inputInt('How many Sat Tv would you like: ')
+        order_sattv = pyip.inputInt('How many Sat Tv would you like: \n')
         if order_sattv > sat_avaible:
                 print(f'We have only {sat_avaible} left')
         else:
@@ -164,8 +161,8 @@ def get_customer_data():
     print("Follow informations are needed:\n-Name \n-Surname \n-Phone number \n-E-mail \n-Address \n")
     
     while True:
-        name = pyip.inputStr('Please type in your name: ').capitalize()
-        surname = pyip.inputStr('Please type in your surname: ').capitalize()
+        name = pyip.inputStr('Please type in your name: \n').capitalize()
+        surname = pyip.inputStr('Please type in your surname: \n').capitalize()
         if not name.isalpha() or not surname.isalpha():
             print('Enter only letters')
             continue
@@ -184,13 +181,13 @@ def get_customer_data():
             continue
             
     
-    email = pyip.inputEmail('Please type in your email: ')
+    email = pyip.inputEmail('Please type in your email: \n')
     print('')
     print('And the last one, address in correct way House number, Street name, City')
     print('')
-    house_num = pyip.inputNum('House number: ')
-    street = pyip.inputStr('Street name: ').capitalize()
-    city = pyip.inputStr('City: ').capitalize()
+    house_num = pyip.inputNum('House number: \n')
+    street = pyip.inputStr('Street name: \n').capitalize()
+    city = pyip.inputStr('City: \n').capitalize()
        
     customer = Customer(name, surname, phone,email, house_num,street, city) 
     data = customer.show_data()
@@ -232,13 +229,13 @@ def main():
     stock = get_units()
     price = get_prices()
 
-    # hello()
-    # show_stock(stock, price)
+    hello()
+    show_stock(stock, price)
     order = orders(stock)
     total = calc_order(order, price)
   
     while True:
-        answer = pyip.inputYesNo('[Y] to change [N] to complete order: ')
+        answer = pyip.inputYesNo('[Y] to change [N] to complete order: \n')
         if answer == 'yes':
             order = orders(stock)
             calc_order(order, price)
