@@ -31,8 +31,9 @@ def get_units():
         cctv_sets = 1000
         sat_sets = 1000 
     return [cctv_sets, sat_sets]
-units = get_units()
-print(units)    
+
+
+    
 def get_prices():
     '''
     Taking prices from google sheet for cctv and sat tv
@@ -94,8 +95,7 @@ def show_stock(stock,price):
     else:
         print('Thank you, hope to see you again!')
         exit()
-              
-        
+
     return stock, price
 
 def orders(stock):
@@ -151,6 +151,9 @@ class Customer:
         self.street = street
         self.city = city
         
+    def show_data(self):
+        return f'{self.name},{self.surname},{self.phone}, {self.email},{self.house_num},{self.street},{self.city}'
+        
 def get_customer_data():
     '''
     Collecting customer data entered by inputs and return them as customer object also basic validation done by use pyinputplus library
@@ -190,56 +193,60 @@ def get_customer_data():
     city = pyip.inputStr('City: ').capitalize()
        
     customer = Customer(name, surname, phone,email, house_num,street, city) 
-    return customer
-    
+    data = customer.show_data()
+    return customer, [data]
 
 def update_stock(stock,order):
+    '''
+    Updating Stock sheet after order is finished 
+    '''
     to_update_stock = SHEET.worksheet('stock')
     update_cctv = int(stock[0]) - int(order[0])
-    print(update_cctv)
     update_sat = int(stock[1]) - int(order[1])
-    print(update_sat)
+
     to_update_stock.update('A2', update_cctv)
     to_update_stock.update('B2', update_sat)
    
 
-def complete_order(customer):
-    
-    '''Order summary, subtract stock and complete program'''
+def complete_order(customer, data):
+    '''
+    Order summary, send customer data to google sheet
+    '''
     print(f'\nThank You for your details {customer.name} {customer.surname}!')
     time.sleep(2)
     
     print(f'\nYour order is accepted and it will be shipped to you in up to 2 days on address:\n {customer.house_num} {customer.street} {customer.city}\n ')
     print('Thank you for visisting and buying in our shop!\n')
     
-    
-    
+    new_order = SHEET.worksheet('orders')
+    new_order.append_row(data)
+
+
 def main():
     '''
     Main function to keep flow of the program and start functions in correct order. 
     '''
-    # stock = get_units()
-    # price = get_prices()
-    
-    # hello()
-    # show_stock(stock, price)
+    stock = get_units()
+    price = get_prices()
 
-    # order = orders(stock)
-
-    # calc_order(order, price)
+    hello()
+    show_stock(stock, price)
+    order = orders(stock)
+    calc_order(order, price)
+  
+    while True:
+        answer = pyip.inputYesNo('[Y] to change [N] to complete order: ')
+        if answer == 'yes':
+            order = orders(stock)
+            calc_order(order, price)
+        elif answer == 'no':    
+            customer, data = get_customer_data()
+            break
+        
+    complete_order(customer, data)
+    update_stock(stock,order)
     
-    # while True:
-    #     answer = pyip.inputYesNo('[Y] to change [N] to complete order: ')
-    #     if answer == 'yes':
-    #         order = orders(stock)
-    #         calc_order(order, price)
-    #     elif answer == 'no':    
-    #         customer = get_customer_data()
-    #         break
-    # update_stock(stock,order)
-    # complete_order(customer)
-    
-# main()
+main()
 
 
         
