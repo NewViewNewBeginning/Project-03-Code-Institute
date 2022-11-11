@@ -1,10 +1,11 @@
 import time
 from sys import exit
-import pyinputplus as pyip
-import pyfiglet
 
 import gspread
+import pyfiglet
+import pyinputplus as pyip
 from google.oauth2.service_account import Credentials
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -43,20 +44,20 @@ def get_prices():
 
 def hello():
     '''
-    Welcoming function confirmig accessing and asking for name to personalize welcome message. 
+    Welcoming function confirmig accessing and printing text.
     '''
+    print('\n\n---------->>>>  WELCOME TO  <<<<----------\n\n')
     logo = pyfiglet.figlet_format("SAT & CCTV")
     print(logo)
-    print('\nWelcome! Before you enter can I ask you for your name? \n')
+    print('\n\n---------->>>>  ORDERING SYSTEM  <<<<----------\n\n')
     time.sleep(1)
+    
+    print('\nJust confirm access to system\n')
     answer = pyip.inputYesNo('Press [Y] to continue, [N] to leave:\n ')
     if answer == 'yes':
-        name = pyip.inputStr('\nWhats your name: ').capitalize()
-        print('')
-        print(f'Hello {name} and welcome in our SAT TV and CCTV order system')
-        print('')
+        print('\nHello and welcome in our SAT TV and CCTV order system\n')
     elif answer == 'no':
-        print('\nSorry you pressed No which is closing system. You can come back if you wish and start again.\n')
+        print('\nHope to see you again.\n')
         exit()
     
         
@@ -81,58 +82,51 @@ def show_stock(stock,price):
         print('Thanks for visiting us! Hope to see you again.') 
         exit()
     
-    time.sleep(2)    
-    print('\nWould you like to continue?\n')
-    
-    answer = pyip.inputYesNo('Give [Y] to continue [N] to leave?: \n ')  
-    
-    if answer == 'yes':
-        time.sleep(1)
-        print("Thank you and let's go to order section")
-    else:
-        print('Thank you, hope to see you again!')
-        exit()
-
-    return stock, price
+    time.sleep(3)
+    print('\nNow tell me what you need?\n')
 
 def orders(stock):
     '''
     This function is taking number of ordered items and checking is there enough in stock to sell needed amount to customer.
     '''
-    print('\nPlease type number of needed sets.\n')
-
-    cctv_avaible = int(stock[0])
-
     while True:
-        order_cctv = pyip.inputInt('How many CCTV would you like: \n')
-        if order_cctv > cctv_avaible:
-            print(f'We have only {cctv_avaible} left')
+        time.sleep((1))
+        print('\nPlease type number of needed sets.\n')
+
+        cctv_avaible = int(stock[0])
+
+        while True:
+            order_cctv = pyip.inputInt('How many CCTV would you like: \n')
+            if order_cctv > cctv_avaible:
+                print(f'We have only {cctv_avaible} left')
+            else:
+                break
+            
+        sat_avaible = int(stock[1])     
+        while True:
+            order_sattv = pyip.inputInt('How many Sat Tv would you like: \n')
+            if order_sattv > sat_avaible:
+                    print(f'We have only {sat_avaible} left')
+            else:
+                break
+        if order_sattv == 0 and order_cctv == 0:
+            print('\nI see you choose 0 sets!\nYou need to start again.')
+            continue
         else:
-            break
-    sat_avaible = int(stock[1])     
-    while True:
-        order_sattv = pyip.inputInt('How many Sat Tv would you like: \n')
-        if order_sattv > sat_avaible:
-                print(f'We have only {sat_avaible} left')
-        else:
-            break
+            break    
         
     return [order_cctv , order_sattv]
 
 def calc_order(order, price):
     '''
-    Calculating current order with possibilty to change it befor go to next step.
+    Calculating current order with possibilty to change it before go to next step.
     '''
     
     total = (int(order[0]) * int(price[0])) + (int(order[1]) * int(price[1]))
     time.sleep(2)
-    print(f'\nYour current total is ${total} if you want to change your order please type [Y] for Yes or [N] for No and proceed to complete order.\n')
+    print(f'\nYou choose {order[0]} cctv sets and {order[1]} sat-tv sets')
+    print(f'\nYour current total is ${total} if you want to proceed your order please type [Y] for Yes or [N] for No change order.\n')
     
-    if total == 0:
-        print('\nI see you choose 0 sets\nYou need to start again if you change your mind.')
-        time.sleep(2)
-        exit()
-
     return [total, order]
 
 class Customer:
@@ -186,8 +180,14 @@ def get_customer_data():
     print('And the last one, address in correct way House number, Street name, City')
     print('')
     house_num = pyip.inputNum('House number: \n')
-    street = pyip.inputStr('Street name: \n').capitalize()
-    city = pyip.inputStr('City: \n').capitalize()
+    while True:
+        street = pyip.inputStr('Street name: \n').capitalize()
+        city = pyip.inputStr('City: \n').capitalize()
+        if not street.isalpha() or not city.isalpha():
+            print('Enter only letters')
+            continue
+        else:
+            break 
        
     customer = Customer(name, surname, phone,email, house_num,street, city) 
     data = customer.show_data()
@@ -235,11 +235,11 @@ def main():
     total = calc_order(order, price)
   
     while True:
-        answer = pyip.inputYesNo('[Y] to change [N] to complete order: \n')
-        if answer == 'yes':
+        answer = pyip.inputYesNo('[Y] to complete [N] to change order: \n')
+        if answer == 'no':
             order = orders(stock)
             calc_order(order, price)
-        elif answer == 'no':    
+        elif answer == 'yes':    
             customer, data = get_customer_data()
             break
         
