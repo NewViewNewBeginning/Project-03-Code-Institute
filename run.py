@@ -160,7 +160,7 @@ def get_customer_data():
         name = pyip.inputStr('Please type in your name: \n').capitalize()
         surname = pyip.inputStr('Please type in your surname: \n').capitalize()
         if not name.isalpha() or not surname.isalpha():
-            print('Enter only letters')
+            print(emoji.emojize(':red_circle:'),'Enter only letters')
             continue
         else:
             break        
@@ -172,10 +172,10 @@ def get_customer_data():
         if not phone.isdigit():
             print('Only digits please.\n')
         elif len(phone) != 10:
-            print('The phone number you provided is not 10 digital')
+            print(emoji.emojize(':red_circle:'),'The phone number you provided is not 10 digital')
         elif not phone.startswith('08') :
-            print('Your number is not starting with 08......')
-            print('Please keep correct format')
+            print(emoji.emojize(':red_circle:'),'Your number is not starting with 08......')
+            print(emoji.emojize(':red_circle:'),'Please keep correct format')
         else:
             print('Correct number.\n')
             break     
@@ -190,7 +190,7 @@ def get_customer_data():
         street = pyip.inputStr('Street name: \n').capitalize()
         city = pyip.inputStr('City: \n').capitalize()
         if not street.isalpha() or not city.isalpha():
-            print('Enter only letters')
+            print(emoji.emojize(':red_circle:'),'Enter only letters')
             continue
         else:
             break 
@@ -225,7 +225,6 @@ def complete_order(customer, data,total):
     ordered_cctv = total[1][0]
     ordered_tv = total[1][1]
     order_time = str(datetime.now())
-    changed_time = [order_time]
     new_order = SHEET.worksheet('orders') 
      
     new_order.append_row([data,ordered_cctv, ordered_tv, paid,order_time])
@@ -236,6 +235,7 @@ def main():
     '''
     
     print('\n',emoji.emojize(':backhand_index_pointing_right:'),'Please note that for the purpose of this project your name, number etc. will be added to an external sheet so feel free to add fictional details if you prefer. No data will be shared with anyone but me.',emoji.emojize(':backhand_index_pointing_left:'))
+    print(emoji.emojize(':see_no_evil:'),emoji.emojize(':hear_no_evil:'),emoji.emojize(':speak_no_evil:'))
     
     
     stock = get_units()
