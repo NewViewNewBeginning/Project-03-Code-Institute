@@ -1,6 +1,8 @@
 import time
+from datetime import datetime
 from sys import exit
 
+import emoji
 import gspread
 import pyfiglet
 import pyinputplus as pyip
@@ -55,7 +57,7 @@ def hello():
     print('\nJust confirm access to system\n')
     answer = pyip.inputYesNo('Press [Y] to continue, [N] to leave:\n ')
     if answer == 'yes':
-        print('\nHello and welcome in our SAT TV and CCTV order system\n')
+        print('\nHello and welcome in our SAT TV and CCTV order system.\n')
     elif answer == 'no':
         print('\nHope to see you again.\n')
         exit()
@@ -67,7 +69,7 @@ def show_stock(stock,price):
     '''
     
     time.sleep(1)
-    print('\nTo make it easy we are selling our products in sets which are including all cabling and needed connections.')
+    print('\nTo make it easy we are selling our products in sets which are including \nall cabling and needed connections.')
     time.sleep(1)
     print('\nSAT TV set operate only 1 TV and set of CCTV including 4 cameras.\nOur current prices and avabilty will be shown below.\n')
     print('Do you want to continue to display avaible stock and prices?')
@@ -163,7 +165,7 @@ def get_customer_data():
         else:
             break        
     
-    print('\nPlease use correct number for Irish mobile 08xxxxxxxx with 10 digits\n')
+    print('\n,Please use correct number for Irish, mobile 08xxxxxxxx with 10 digits\n')
     while True:
         phone = input('Please type in your mobile phone number: \n')
         
@@ -222,14 +224,20 @@ def complete_order(customer, data,total):
     paid = total[0]
     ordered_cctv = total[1][0]
     ordered_tv = total[1][1]
-  
-    new_order = SHEET.worksheet('orders')    
-    new_order.append_row([data,ordered_cctv, ordered_tv, paid])
+    order_time = str(datetime.now())
+    changed_time = [order_time]
+    new_order = SHEET.worksheet('orders') 
+     
+    new_order.append_row([data,ordered_cctv, ordered_tv, paid,order_time])
     
 def main():
     '''
     Main function to keep flow of the program and start functions in correct order. 
     '''
+    
+    print('\n',emoji.emojize(':backhand_index_pointing_right:'),'Please note that for the purpose of this project your name, number etc. will be added to an external sheet so feel free to add fictional details if you prefer. No data will be shared with anyone but me.',emoji.emojize(':backhand_index_pointing_left:'))
+    
+    
     stock = get_units()
     price = get_prices()
 
@@ -249,6 +257,7 @@ def main():
         
     complete_order(customer,data,total)
     update_stock(stock,order)
+    
     
     
 main()
