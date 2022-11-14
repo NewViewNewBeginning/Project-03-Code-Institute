@@ -69,7 +69,7 @@ def show_stock(stock,price):
     time.sleep(1)
     print('\nTo make it easy we are selling our products in sets which are including all cabling and needed connections.')
     time.sleep(1)
-    print('\nSAT TV set operate only 1 TV and set of CCTV including 4 cameras.\nOur current prices and avabilty will be shown below\n')
+    print('\nSAT TV set operate only 1 TV and set of CCTV including 4 cameras.\nOur current prices and avabilty will be shown below.\n')
     print('Do you want to continue to display avaible stock and prices?')
     answer = pyip.inputYesNo('Press [Y] to continue or [N] to leave:\n ')
     if answer == 'yes':
@@ -163,19 +163,23 @@ def get_customer_data():
         else:
             break        
     
+    print('\nPlease use correct number for Irish mobile 08xxxxxxxx with 10 digits\n')
     while True:
-        print('\nPlease use correct number for Irish mobile 08xxxxxxxx with 10 digits\n')
         phone = input('Please type in your mobile phone number: \n')
         
-        if len(phone) == 10 and phone[0] == '0' and phone[1] == '8' and phone.isdigit():
-            print('Correct number\n')
-            break
+        if not phone.isdigit():
+            print('Only digits please.\n')
+        elif len(phone) != 10:
+            print('The phone number you provided is not 10 digital')
+        elif not phone.startswith('08') :
+            print('Your number is not starting with 08......')
+            print('Please keep correct format')
         else:
-            print('Please provide valid number, only numbers! ')
-            continue
+            print('Correct number.\n')
+            break     
             
     
-    email = pyip.inputEmail('Please type in your email: \n')
+    email = pyip.inputEmail('Please type in your e-mail: \n')
     print('')
     print('And the last one, address in correct way House number, Street name, City')
     print('')
