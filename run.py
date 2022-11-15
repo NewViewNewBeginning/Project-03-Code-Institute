@@ -1,7 +1,6 @@
 import time
 from datetime import datetime
 from sys import exit
-
 import emoji
 import gspread
 import pyfiglet
@@ -18,8 +17,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('CCTV_SAT')
 
-
-
 def get_units():
     '''
     Taking avaible units from google sheet.
@@ -33,7 +30,6 @@ def get_units():
         sat_sets = 1000 
     return [cctv_sets, sat_sets]
 
-  
 def get_prices():
     '''
     Taking prices from google sheet for cctv and sat tv
@@ -48,7 +44,7 @@ def hello():
     '''
     Welcoming function confirmig accessing and printing text.
     '''
-    print('\n\n---------->>>>  WELCOME TO  <<<<----------\n\n')
+    print('\n\n---------->>>>   WELCOME TO  <<<<----------\n\n')
     logo = pyfiglet.figlet_format("SAT & CCTV")
     print(logo)
     print('\n\n---------->>>>  ORDERING SYSTEM  <<<<----------\n\n')
@@ -67,7 +63,6 @@ def show_stock(stock,price):
     '''
     Function showing amount of avaible stock/price units
     '''
-    
     time.sleep(1)
     print('\nTo make it easy we are selling our products in sets which are including \nall cabling and needed connections.')
     time.sleep(1)
@@ -76,14 +71,11 @@ def show_stock(stock,price):
     answer = pyip.inputYesNo('Press [Y] to continue or [N] to leave:\n ')
     if answer == 'yes':
         print('\nAvaible stock:\n')
-        
         print(f'CCTV SETS = {stock[0]} units which cost ${price[0]} each')
         print(f'SAT-TV SETS = {stock[1]} units  which cost ${price[1]} each')   
-        
     elif answer == 'no':
         print('Thanks for visiting us! Hope to see you again.') 
         exit()
-    
     time.sleep(3)
     print('\nNow tell me what you need?\n')
 
@@ -126,8 +118,8 @@ def calc_order(order, price):
     
     total = (int(order[0]) * int(price[0])) + (int(order[1]) * int(price[1]))
     time.sleep(2)
-    print(f'\nYou choose {order[0]} cctv sets and {order[1]} sat-tv sets')
-    print(f'\nYour current total is ${total} if you want to proceed your order please type [Y] for Yes or [N] for No change order.\n')
+    print(f'\nYou choose \U0001F4F9 {order[0]} cctv sets and \U0001F4FA {order[1]} sat-tv sets')
+    print(f'\nYour current total is \U0001F6D2 ${total} if you want to proceed your order.\nPlease type [Y] for Yes or [N] for No change order.\n')
     
     return [total, order]
 
@@ -160,37 +152,35 @@ def get_customer_data():
         name = pyip.inputStr('Please type in your name: \n').capitalize()
         surname = pyip.inputStr('Please type in your surname: \n').capitalize()
         if not name.isalpha() or not surname.isalpha():
-            print(emoji.emojize(':red_circle:'),'Enter only letters')
+            print('\U0001F534 Enter only letters')
             continue
         else:
             break        
     
-    print('\n,Please use correct number for Irish, mobile 08xxxxxxxx with 10 digits\n')
+    print('\nPlease use correct number for Irish \U0001F1EA, mobile 08xxxxxxxx with 10 digits\n')
     while True:
-        phone = input('Please type in your mobile phone number: \n')
+        phone = input('\U0001F4DE Please type in your mobile phone number: \n')
         
         if not phone.isdigit():
-            print('Only digits please.\n')
+            print('\U0001F534 Only digits please.\n')
         elif len(phone) != 10:
-            print(emoji.emojize(':red_circle:'),'The phone number you provided is not 10 digital')
+            print('\U0001F534 The phone number you provided is not 10 digital')
         elif not phone.startswith('08') :
-            print(emoji.emojize(':red_circle:'),'Your number is not starting with 08......')
-            print(emoji.emojize(':red_circle:'),'Please keep correct format')
+            print('\U0001F534 Your number is not starting with 08......')
+            print('\U0001F534 Please keep correct format')
         else:
-            print('Correct number.\n')
+            print('\U0001F7E2 Correct number.\n')
             break     
-            
-    
     email = pyip.inputEmail('Please type in your e-mail: \n')
     print('')
-    print('And the last one, address in correct way House number, Street name, City')
+    print('And the last one, address in correct way House number, Street name, City \U0001F30D')
     print('')
-    house_num = pyip.inputNum('House number: \n')
+    house_num = pyip.inputNum('\U0001F3D8 House number: \n')
     while True:
-        street = pyip.inputStr('Street name: \n').capitalize()
-        city = pyip.inputStr('City: \n').capitalize()
+        street = pyip.inputStr('\U0001F3D8 Street name: \n').capitalize()
+        city = pyip.inputStr('\U0001F3D8 City: \n').capitalize()
         if not street.isalpha() or not city.isalpha():
-            print(emoji.emojize(':red_circle:'),'Enter only letters')
+            print('\U0001F534 Enter only letters')
             continue
         else:
             break 
@@ -215,10 +205,10 @@ def complete_order(customer, data,total):
     '''
     Order summary, send customer data to google sheet with order info
     '''
-    print(f'\nThank You for your details {customer.name} {customer.surname}!')
+    print(f'\nThank You for your details {customer.name} {customer.surname} \U0001F91D!')
     time.sleep(2)
     
-    print(f'\nYour order is accepted and it will be shipped to you in up to 2 days on address:\n {customer.house_num} {customer.street} {customer.city}\n ')
+    print(f'\nYour order is accepted and it will be shipped \U0001F69A to you in up to 2 days on address:\n {customer.house_num} {customer.street} {customer.city}\n ')
     print('Thank you for visisting and buying in our shop!\n')
     data = data[0]
     paid = total[0]
@@ -234,9 +224,8 @@ def main():
     Main function to keep flow of the program and start functions in correct order. 
     '''
     
-    print('\n',emoji.emojize(':backhand_index_pointing_right:'),'Please note that for the purpose of this project your name, number etc. will be added to an external sheet so feel free to add fictional details if you prefer. No data will be shared with anyone but me.',emoji.emojize(':backhand_index_pointing_left:'))
-    print(emoji.emojize(':see_no_evil:'),emoji.emojize(':hear_no_evil:'),emoji.emojize(':speak_no_evil:'))
-    
+    print('\n \U0001F449 Please note that for the purpose of this project your name, number etc.\n will be added to an external sheet so feel free to add fictional\ndetails if you prefer. No data will be shared with anyone but me. \U0001F448')
+    time.sleep(5)
     
     stock = get_units()
     price = get_prices()
@@ -257,11 +246,4 @@ def main():
         
     complete_order(customer,data,total)
     update_stock(stock,order)
-    
-    
-    
 main()
-
-
-        
-    
