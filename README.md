@@ -57,7 +57,7 @@ As a returning visitor:
 ----------------------------------------
 
 Firstly I imagine the way shop should work like but than I realize that it's much easier with flowchart.
-So I created a flowchart so I knew the structure of my programme and would be able to look at it for guidance during the process.
+So I created a flowchart with structure of my programme so I would be able to look at it for guidance during the process.
 
 ![Flowchart](readme-assets/)
 
@@ -69,7 +69,7 @@ So I created a flowchart so I knew the structure of my programme and would be ab
 
 ### Start/first decision
 
-At first program showing information taht it's not real shop and all data provided should be fake.
+At first program showing information that it's not real shop and all data provided could be fake.
 
 The user is greeted with the LOGO together with a welcome message. Here he can decide if he wishes to continue or leave the shop instead. The option is to enter either Y/N Yes/No. The inputYesNo validating answers throughout the entire programme including user accidentally enters a space before/after the input,leave it blank or use any other key that is not accepted.
   
@@ -94,47 +94,37 @@ If the user enters a invalid input an error message shows up and he will be aske
 ----------------------------------------
 ### See Selection/second decision
 
-If the user decides to have a look, a list of books will be printed and displayed. To create a little bit of anticipation the .sleep() function has been implemented with a delay of 1 second to display all titles.
+If the user decides to have a look, a list of products with pricing will be printed and displayed. 
 
 ![Book List](readme-assets/book-list.png)
 
 ----------------------------------------
-#### Leave Shop 
+#### Ordering/third decision
 
-If the user decides to not go ahead and order a book, he can enter any other key but the numbers between 1 and 8 to leave the shop.
+Now customer deciding and giving number of needed sets. At least 1 set need to be added to order, otherwise will be asked again to provide number.
 
-![Second Choice - Leave Shop](readme-assets/second-choice-exit.png)
-
+![Third decision](readme-assets/)
 ----------------------------------------
-### Ordering
+#### Change order/fourth decision
 
-If the user wants to order a book, he is asked to enter a number between 1 and 8 to choose the desired title. A couple of examples are being mentioned for guidance.
+Now after seeing total value and number of ordered sets, customer can change order by typing N/No and go back to add new order or proceed by Y/Yes to next step.
 
-![Second Choice - Select Title](readme-assets/second-choice-continue.png)
-
-----------------------------------------
-### User Information
-
-As this project has been linked to a Google Sheet, I added a small paragraph to inform the user that the data will be added to this sheet but confirm that it will be collected solely for the purpose of this project and only be seen by me. I added a 5 second delay to allow the user enough time to read this message before the programme continues. To highlight it is not part of the programme itself, this text has been put between emojis.
-
-![User Information](readme-assets/)
+![Fourth decision](readme-assets/)
 
 ----------------------------------------
 ### Enter details
 
-The user is now asked to enter their first and surname, IE mobile number and address.
+The user is now asked to enter their firsname and surname, IE mobile number and address.
 
 ![Details](readme-assets/)
 
 ----------------------------------------
 
-### Invalid Input - Name
+### Invalid Input - Name/Surname
 
 If the user enters a invalid input he will be asked to start again from the top.
 
 ![Invalid Input2](readme-assets/)
-
-![Invalid Input3](readme-assets/)
 
 ----------------------------------------
 
@@ -143,65 +133,48 @@ If the user enters a invalid input he will be asked to start again from the top.
 If the user doesn't enter a valid 10-digit IE number with start 08 or is not a number, a message pops up and informs him that it is incorrect. He can then enter the details again. Until the user enters correct number, the programme keeps looping until a valid number has been entered. 
 
 ![Wrong mobile number](readme-assets/)
+![Wrong mobile number](readme-assets/)
+![Wrong mobile number](readme-assets/)
 
 ----------------------------------------
+### Enter Details - Address
 
-### Confirm Or Correct Details
+User is asked for details like house number,street name and city. without checking are they valid or so.
 
-After entering all his details, the user can then read over them again and either confirm the details by entering the digit 1, or enter the number 2 if he wishes to correct something. He will then be asked to enter all his details again from the top.
+![Address](readme-assets/)
+----------------------------------------
+### Enter Details - Email
+
+Email has only validation if it's in correct format name@somethig.end
+
+![Wrong email](readme-assets/)
+----------------------------------------
+
+### Correct Details
+
+When all data are provided, message about delivery is printed.
 
 ![Confirm Details - No](readme-assets/confirm-details-no.png)
 
-If he confirms his choice, a message appears letting the user that the order can now be finished up.
-
-![Confirm Details - Yes](readme-assets/confirm-details-yes.png)
-
-----------------------------------------
-
-### Invalid Input
-
-If the user enters an invalid input, an error message appears and it loops back to the start and he will be asked to enter his details again.
-
-![Invalid Input4](readme-assets/invalid-input4.png)
-
-
-----------------------------------------
-
+---------------------------------------
 
 ## Confirmed Details & Google Sheet
 
-Once the user has confirmed his details, they are simultaneously added to the Google Sheet.
+Once the user has provide his details, they are simultaneously added to the Google Sheet.
 
 ![Update Google Sheet](readme-assets/confirm-details-add-to-sheet.png)
 
-
-### Thank you & Receipt
-
-At this stage, the user is being thanked for supporting his local bookshop, and a small receipt will be printed. Another delay of 2 seconds has been added before the receipt has been 'printed'. On this receipt, the user will find the address of the shop, the title and price of the book he ordered, and the date and time.
-
-![Thanks & Receipt](readme-assets/receipt.png)
-
-## Last choice
-
-The user is now being asked if he wishes to place another order or leave the shop. If he wishes to place another order, he is asked to enter 1 and if he wants to leave he should press any other key.
-
-![Leave Shop](readme-assets/last-choice-exit.png)
-
-
-If he enters 1 the programme starts again from the beginning.
-
-![Order another book](readme-assets/last-choice-new-start.png)
 
 [Back to the Top](#table-of-contents)
 
 ## Future Features
 ----------------------------------------
 
-- To migrate the booklist to a Google sheet and pull out the titles from there for a wider selection
-- To give the user the option to enter an email address instead of or addition to a phone number
-- To allow the user to order multiple books at the same time
+- Adding more options to buy.
+- Automate displaying avaible stock if spreadsheet will receive new products
+- Spread customer details for seperate cells
 
-At the moment, I am taking the user's data in one function and updating my Google Sheet once the user confirms that all the data is correct. In the future, I might look into dividing this into three smaller functions so that the user doesn't have to enter all the data again from the top and can also select a specific section he made a mistake in and jump to this specific function/input.
+Add more validation for phone numbers, email and address. Use less hardcoded values so I'll be able to add products in spreadsheet and display them automaticly without adding more code.
 
 ----------------------------------------
 ## Technologies Used 
@@ -229,15 +202,13 @@ At the moment, I am taking the user's data in one function and updating my Googl
 
 The site has been tested by me thoroughly during its creation to ensure that the programme runs as it should and errors are being caught. Friends also tested it on a variation of laptops and with different browsers without any issues.
 
-I had a lot of fun creating my little bookshop and enjoyed it very much. I did, however, run into a few issues:
+I had a lot of fun creating this shop. I did, however, run into a few issues:
 
-1) At first I only had one break statement in my order_book() function, so every time I ran the programme it jumped back to the beginning instead of going ahead to the user_data() function. I had it working before, but discovered that it was only because I entered (by chance) the only number that had the break statement included. After having posted my question in the Slack Channel, I saw my issue a couple of minutes later and entered a break statement after each choice. This fixed my problem.
+1) At first I found that not all kind of data can be passed to append_row method and I was checking all returned values from functions 1 by 1 before I was able to send them in 1 line to Google file.
 
-2) When printing the receipt, I wanted to display the choice the user made together with a few extra pieces of information but kept running into error messages. After reading over the Code Institute material over and over again, I found a simple solution and made my select_book variable a global variable. This allowed me to show the title the user had selected on the receipt successfully.
+2) Returning tuples in some cases from functions which I find when next function couldn't modifiy them. So I stated checking types of returned values and make sure to modify data which I was expecting (Lists,Stings)
 
-3) My biggest issue, however, was adding the customer's details to my Google Sheet. I tried endless variations and looked at the love sandwich project for guidance as well as other similar projects. Unfortunately, none of them helped me find the answer, because unlike them, I wanted to add three variables (fname, lname and mnumber) from one function at the same time (the decision to add the title to the Google Sheet as well came later). At first I thought I might be able to add it with a simple append_row statement within my user_data() function, but it wasn't as easy as that. 
 
-I tried turning these variables into global variables and using them, but this turned out to be unsuccessful too. I then came up with a solution and, on paper, it should have worked, but I kept getting error message after error message. So I contacted Tutor Support, who helped me and pointed out that the add_data.append_row (name1, name2, number) in my update_sheet() function was missing square brackets, converting it to a list rather than a string. After changing this, the entered details finally showed up in my Google Sheet.
 
 [Back to the Top](#table-of-contents)
 
@@ -249,7 +220,7 @@ At the moment, street and city not accepting white spaces.
 ### Validators Testing
 --------------------------------------
 
-The code has been tested by running it through the PeP8. Almost all of the errors that have been encountered were due to trailing whitespaces or either too many or not enough blank lines.
+The code has been tested by running it through the PeP8. All of the errors that have been encountered were due to trailing whitespaces or either too many or not enough blank lines.
 
 No errors were found during the final check.
 
