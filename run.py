@@ -208,7 +208,7 @@ def complete_order(customer, data,total):
     print(f'\nThank You for your details {customer.name} {customer.surname} \U0001F91D!')
     time.sleep(2)
     
-    print(f'\nYour order is accepted and it will be shipped \U0001F69A to you in up to 2 days on address:\n {customer.house_num} {customer.street} {customer.city}\n ')
+    print(f'\nYour order is accepted and it will be shipped \U0001F69A to you in up to 2 days \non address:\n{customer.house_num} {customer.street} {customer.city}\n ')
     print('Thank you for visisting and buying in our shop!\n')
     data = data[0]
     paid = total[0]
@@ -224,7 +224,7 @@ def main():
     Main function to keep flow of the program and start functions in correct order. 
     '''
     
-    print('\n \U0001F449 Please note that for the purpose of this project your name, number etc.\n will be added to an external sheet so feel free to add fictional\ndetails if you prefer. No data will be shared with anyone but me. \U0001F448')
+    print('\n \U0001F449  Please note that for the purpose of this project your name, number etc.\n will be added to an external sheet so feel free to add fictional\ndetails if you prefer. No data will be shared with anyone but me. \U0001F448')
     time.sleep(5)
     
     stock = get_units()
