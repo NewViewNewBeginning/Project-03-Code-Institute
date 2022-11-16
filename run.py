@@ -165,7 +165,7 @@ def get_customer_data():
         else:
             break
 
-    print('\nPlease use correct number for Irish \U0001F1EE, mobile 08xxxxxxxx with 10 digits\n')
+    print('\nPlease use correct number for Irish mobile 08xxxxxxxx with 10 digits\n')
     while True:
         phone = input('\U0001F4DE Please type in your mobile phone number: \n')
 
