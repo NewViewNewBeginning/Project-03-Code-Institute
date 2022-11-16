@@ -125,7 +125,7 @@ The user is now asked to enter their firsname and surname, IE mobile number and 
 
 If the user enters a invalid input he will be asked to start again from the top.
 
-![Invalid Input](readme-assets/)
+![Invalid Input](readme-assets/error_name)
 
 ----------------------------------------
 
@@ -140,20 +140,21 @@ If the user doesn't enter a valid 10-digit IE number with start 08 or is not a n
 
 User is asked for details like house number,street name and city. without checking are they valid or so.
 
-![Address](readme-assets/)
+![Address](readme-assets/address.png)
 ----------------------------------------
 ### Enter Details - Email
 
 Email has only validation if it's in correct format name@somethig.end
 
-![Wrong email](readme-assets/)
+![Wrong email](readme-assets/email.png)
+![Wrong email](readme-assets/email_error.png)
 ----------------------------------------
 
 ### Correct Details
 
 When all data are provided, message about delivery is printed.
 
-![Confirm Details - No](readme-assets/confirm-details-no.png)
+![Confirm Details - No](readme-assets/end_summary.png)
 
 ---------------------------------------
 
@@ -161,7 +162,7 @@ When all data are provided, message about delivery is printed.
 
 Once the user has provide his details, they are simultaneously added to the Google Sheet.
 
-![Update Google Sheet](readme-assets/confirm-details-add-to-sheet.png)
+![Update Google Sheet](readme-assets/orders_details.png)
 
 
 [Back to the Top](#table-of-contents)
