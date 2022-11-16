@@ -1,6 +1,6 @@
 # Project-03-Code-Institute CCTV & SAT TV ordering system
 
-![Landing Page](readme-assets/landing-page.png)
+![Landing Page](readme-assets/main.png)
 
 --------------------------------------
 
@@ -33,7 +33,7 @@ As I was working in past with similar equipment, I wanted to create an ordering 
 ----------------------------------------
 Despite the project being entirely text-based, I implemented a few little things to make it more appealing to the user. When the user enters the site, he will be greeted with a big heading and the name of ‘SAT & CCTV’. I also added emojis throughout the entire programme when I felt it would be beneficial for various reasons like bad input type etc.
 
-![SAT-CCTV](readme-assets/)
+![SAT-CCTV](readme-assets/start_msg.png)
 
 
 ----------------------------------------
@@ -59,7 +59,7 @@ As a returning visitor:
 Firstly I imagine the way shop should work like but than I realize that it's much easier with flowchart.
 So I created a flowchart with structure of my programme so I would be able to look at it for guidance during the process.
 
-![Flowchart](readme-assets/)
+![Flowchart](readme-assets/diagram.png)
 
 [Back to the Top](#table-of-contents)
 
@@ -74,14 +74,14 @@ At first program showing information that it's not real shop and all data provid
 The user is greeted with the LOGO together with a welcome message. Here he can decide if he wishes to continue or leave the shop instead. The option is to enter either Y/N Yes/No. The inputYesNo validating answers throughout the entire programme including user accidentally enters a space before/after the input,leave it blank or use any other key that is not accepted.
   
 
-![Enter or Leave Shop](readme-assets/)
+![Enter or Leave Shop](readme-assets/access.png)
 
 ----------------------------------------
 #### Leave Shop 
 
 If the user changes his mind, he can leave the shop by entering N/No/n/no.
 
-![Leave Shop](readme-assets/)
+![Leave Shop](readme-assets/exit.png)
 
 ----------------------------------------
 
@@ -89,34 +89,35 @@ If the user changes his mind, he can leave the shop by entering N/No/n/no.
 
 If the user enters a invalid input an error message shows up and he will be asked to enter either Y or N
 
-![Invalid Input](readme-assets/)
+![Invalid Input](readme-assets/wrong_input.png)
 
 ----------------------------------------
 ### See Selection/second decision
 
 If the user decides to have a look, a list of products with pricing will be printed and displayed. 
 
-![Book List](readme-assets/book-list.png)
+![Access List](readme-assets/info.png)
+![Stock List](readme-assets/stock_list.png)
 
 ----------------------------------------
 #### Ordering/third decision
 
 Now customer deciding and giving number of needed sets. At least 1 set need to be added to order, otherwise will be asked again to provide number.
 
-![Third decision](readme-assets/)
+![Third decision](readme-assets/order_question.png)
 ----------------------------------------
 #### Change order/fourth decision
 
 Now after seeing total value and number of ordered sets, customer can change order by typing N/No and go back to add new order or proceed by Y/Yes to next step.
 
-![Fourth decision](readme-assets/)
+![Fourth decision](readme-assets/sumarry_change_order.png)
 
 ----------------------------------------
 ### Enter details
 
 The user is now asked to enter their firsname and surname, IE mobile number and address.
 
-![Details](readme-assets/)
+![Details](readme-assets/address.png)
 
 ----------------------------------------
 
@@ -124,7 +125,7 @@ The user is now asked to enter their firsname and surname, IE mobile number and 
 
 If the user enters a invalid input he will be asked to start again from the top.
 
-![Invalid Input2](readme-assets/)
+![Invalid Input](readme-assets/)
 
 ----------------------------------------
 
@@ -132,9 +133,7 @@ If the user enters a invalid input he will be asked to start again from the top.
 
 If the user doesn't enter a valid 10-digit IE number with start 08 or is not a number, a message pops up and informs him that it is incorrect. He can then enter the details again. Until the user enters correct number, the programme keeps looping until a valid number has been entered. 
 
-![Wrong mobile number](readme-assets/)
-![Wrong mobile number](readme-assets/)
-![Wrong mobile number](readme-assets/)
+![Wrong mobile number](readme-assets/phone_error.png)
 
 ----------------------------------------
 ### Enter Details - Address
