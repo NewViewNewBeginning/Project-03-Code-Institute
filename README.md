@@ -124,7 +124,7 @@ The user is now asked to enter their firsname and surname, IE mobile number and 
 
 If the user enters a invalid input he will be asked to start again from the top.
 
-![Invalid Input](readme-assets/error_name)
+![Invalid Input](readme-assets/error_name.png)
 
 ----------------------------------------
 
