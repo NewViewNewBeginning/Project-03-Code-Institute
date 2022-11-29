@@ -231,9 +231,9 @@ The code has been tested by running it through the PeP8. All of the errors that 
 
 No errors were found during the final check.
 
-![PEP8](https://pep8ci.herokuapp.com/#)
+![PEP8](https://pep8ci.herokuapp.com/)
 
-![PEP8 Validation](readme-assets/pep8_validation.png.png)
+![PEP8 Validation](readme-assets/pep8_validation.png)
 
 
 
