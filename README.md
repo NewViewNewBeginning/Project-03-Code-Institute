@@ -33,8 +33,6 @@ As I was working in past with similar equipment, I wanted to create an ordering 
 ----------------------------------------
 Despite the project being entirely text-based, I implemented a few little things to make it more appealing to the user. When the user enters the site, he will be greeted with a big heading and the name of ‘SAT & CCTV’. I also added emojis throughout the entire programme when I felt it would be beneficial for various reasons like bad input type etc.
 
-![SAT-CCTV](readme-assets/start_msg.png)
-
 
 ----------------------------------------
 ## User Experience
@@ -49,7 +47,7 @@ As a first time visitor:
 
 As a returning visitor:
 
-- I want to be able to order more 
+- I want to be able to order more. 
 
 ----------------------------------------
 
@@ -70,6 +68,8 @@ So I created a flowchart with structure of my programme so I would be able to lo
 ### Start/first decision
 
 At first program showing information that it's not real shop and all data provided could be fake.
+
+![SAT-CCTV](readme-assets/start_msg.png)
 
 The user is greeted with the LOGO together with a welcome message. Here he can decide if he wishes to continue or leave the shop instead. The option is to enter either Y/N Yes/No. The inputYesNo validating answers throughout the entire programme including user accidentally enters a space before/after the input,leave it blank or use any other key that is not accepted.
   
@@ -96,7 +96,6 @@ If the user enters a invalid input an error message shows up and he will be aske
 
 If the user decides to have a look, a list of products with pricing will be printed and displayed. 
 
-![Access List](readme-assets/info.png)
 ![Stock List](readme-assets/stock_list.png)
 
 ----------------------------------------
@@ -147,7 +146,7 @@ User is asked for details like house number,street name and city. without checki
 Email has only validation if it's in correct format name@somethig.end
 
 ![Wrong email](readme-assets/email.png)
-![Wrong email](readme-assets/email_error.png)
+![Wrong email](readme-assets/emial_error.png)
 ----------------------------------------
 
 ### Correct Details
@@ -160,7 +159,7 @@ When all data are provided, message about delivery is printed.
 
 ## Confirmed Details & Google Sheet
 
-Once the user has provide his details, they are simultaneously added to the Google Sheet.
+Once the user has provide his details, they are simultaneously added to the Google Sheet. In future, all customer details can be spread to separate columns.
 
 ![Update Google Sheet](readme-assets/orders_details.png)
 
@@ -202,11 +201,19 @@ Add more validation for phone numbers, email and address. Use less hardcoded val
 
 The site has been tested by me thoroughly during its creation to ensure that the programme runs as it should and errors are being caught. Friends also tested it on a variation of laptops and with different browsers without any issues.
 
+All inputs were tested with variations of different possibilities:
+- Yes/No inputs won't accept anything but Y/N, y/n, Yes/No, yes/no and will inform if the value is not taken.
+- Number inputs will accept only numbers, no empty values or letters will be accepted.
+- String inputs will only accept letters, with white spaces if there is more than a single word name for City, Street ...
+- An email will only be accepted for the correct format with the use @ but it won't be validated if it is valid.
+
 I had a lot of fun creating this shop. I did, however, run into a few issues:
 
 1) At first I found that not all kind of data can be passed to append_row method and I was checking all returned values from functions 1 by 1 before I was able to send them in 1 line to Google file.
 
 2) Returning tuples in some cases from functions which I find when next function couldn't modifiy them. So I stated checking types of returned values and make sure to modify data which I was expecting (Lists,Stings)
+
+3) Break lines due to long line error while validating.
 
 
 
@@ -214,7 +221,7 @@ I had a lot of fun creating this shop. I did, however, run into a few issues:
 
 ## Unfixed Bugs
 
-At the moment, street and city not accepting white spaces.
+Currently, no unfixed bugs are causing problems with using the program.
 
 
 ### Validators Testing
@@ -224,7 +231,11 @@ The code has been tested by running it through the PeP8. All of the errors that 
 
 No errors were found during the final check.
 
-![PEP8]()
+![PEP8](https://pep8ci.herokuapp.com/#)
+
+![PEP8 Validation](readme-assets/pep8_validation.png.png)
+
+
 
 --------------------------------------
 
