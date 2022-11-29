@@ -231,7 +231,7 @@ The code has been tested by running it through the PeP8. All of the errors that 
 
 No errors were found during the final check.
 
-![PEP8](https://pep8ci.herokuapp.com/)
+[PEP8](https://pep8ci.herokuapp.com/)
 
 ![PEP8 Validation](readme-assets/pep8_validation.png)
 
@@ -275,7 +275,7 @@ The website was deployed by following the steps below:
 - [Stackoverflow](https://stackoverflow.com) - to clarify some possibilities
 - [MakeUseOf](https://www.makeuseof.com/how-to-include-emojis-in-your-python-code/) - for the syntax to add emojis
 - [GeeksForGeeks](https://www.geeksforgeeks.org/python-ascii-art-using-pyfiglet-module/) - help on which module to import and how to create my header
-- [W3 School](https://www.w3schools.com/howto/howto_css_fixed_footer.asp)
+- [W3 School](https://www.w3schools.com)
 - Love Sandwiches - for general guidance and how to set up my API
 
 The text for this programme has been written by myself.
